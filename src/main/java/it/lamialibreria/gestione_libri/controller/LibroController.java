@@ -2,7 +2,8 @@ package it.lamialibreria.gestione_libri.controller;
 
 import it.lamialibreria.gestione_libri.domain.Libro;
 import it.lamialibreria.gestione_libri.repository.LibroRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,6 @@ public class LibroController {
 
     private final LibroRepository libroRepository;
 
-    @Autowired
     public LibroController(LibroRepository libroRepository) {
         this.libroRepository = libroRepository;
     }
@@ -35,7 +35,7 @@ public class LibroController {
 
     // --- CREATE ---
     @PostMapping
-    public Libro createLibro(@RequestBody Libro nuovoLibro) {
+    public Libro createLibro(@Valid @RequestBody Libro nuovoLibro) {
         return libroRepository.save(nuovoLibro);
     }
 
